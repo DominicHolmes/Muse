@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Welcome to Muse.</h1>
+<h2><%= if logged_in? then link_to 'Logout', 'sessions/destroy' else link_to 'Login', 'sessions/new' end%> | <%=if logged_in? then link_to 'New Post', new_post_path end%></h2>
+    <% @posts.each do |post| %>
+        <p><strong><%= post.title %></strong></p>
+        <p><i>by <%= User.find_by_id(post.user_id).name%> from <%=User.find_by_id(post.user_id).city%></i></p>
+        <p><%= post.body %></p>
+        <p><strong>Song:</strong><%= post.song_name %> by <%= post.artist_name %></p>
+        <iframe src="https://embed.spotify.com/?uri=<%=post.spotify_uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe><br>
+        <% if logged_in? %>
+          <% if current_user.id == post.user_id %>
+            <p><%= link_to 'Edit', edit_post_path(post) %> 
+            <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <% end%>
+        <% end %>
+    <% end %>

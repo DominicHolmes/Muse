@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= @post.title %></strong>
+</p>
+<p><i>
+  by <%= User.find_by_id(@post.user_id).name%> from <%=User.find_by_id(@post.user_id).city%>
+</i></p>
+<p>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>Song:</strong>
+  <%= @post.song_name %> by <%= @post.artist_name %>
+</p>
+
+<iframe src="https://embed.spotify.com/?uri=<%=@post.spotify_uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe><br>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
