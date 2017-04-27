@@ -16,10 +16,9 @@ class SessionsController < ApplicationController
     if (@user != nil) then
       session[:user_id] = @user.id
       redirect_to posts_path
+    else
+      redirect_to sessions_new_path
     end
-    #else
-    #  render 'sessions/_login.html.erb'
-    #end
   end
 
   def destroy
