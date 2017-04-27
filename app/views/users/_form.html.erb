@@ -11,23 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :city %><br>
     <%= f.text_field :city %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :password_hash %><br>
+  <div class="form-group">
+    <%= f.label :password %><br>
     <%= f.text_field :password_hash %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+  <% end %>
+

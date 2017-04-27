@@ -1,12 +1,17 @@
 <p id="notice"><%= notice %></p>
-
+<div id="left" class="col-md-4">
 <h1>Welcome to Muse.</h1>
-<h2><%= if logged_in? then link_to 'Logout', '/sessions/destroy' else link_to 'Login', '/sessions/new' end%> | <%=if logged_in? then link_to 'New Post', new_post_path end%></h2>
+<h3><%= if logged_in? then link_to 'Logout', '/sessions/destroy' else link_to 'Login', '/sessions/new' end%> | <%=if logged_in? then link_to 'New Post', new_post_path end%></h3>
+<% if logged_in? %>
+  <h4>Logged in: <%= current_user.name %> from <%= current_user.city %></h4>
+<% end %>
+</div>
+<div id="center" class="col-md-4" style="padding-top: 40px;">
     <% @posts.each do |post| %>
-        <p><strong><%= post.title %></strong></p>
-        <p><i>by <%= User.find_by_id(post.user_id).name%> from <%=User.find_by_id(post.user_id).city%></i></p>
+        <h4 style="padding-top: 40px;"><strong><%= post.title %></strong></h4>
+        <h6><i>by <%= User.find_by_id(post.user_id).name%> from <%=User.find_by_id(post.user_id).city%></i></h6>
         <p><%= post.body %></p>
-        <p><strong>Song:</strong><%= post.song_name %> by <%= post.artist_name %></p>
+        <h6><i>Song: <%= post.song_name %> by <%= post.artist_name %></i></h6>
         <iframe src="https://embed.spotify.com/?uri=<%=post.spotify_uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe><br>
         <% if logged_in? %>
           <% if current_user.id == post.user_id %>
@@ -15,3 +20,5 @@
           <% end%>
         <% end %>
     <% end %>
+</div>
+<div id="center" class="col-md-4"></div>
