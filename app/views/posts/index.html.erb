@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Welcome to Muse.</h1>
-<h2><%= if logged_in? then link_to 'Logout', 'sessions/destroy' else link_to 'Login', 'sessions/new' end%> | <%=if logged_in? then link_to 'New Post', new_post_path end%></h2>
+<h2><%= if logged_in? then link_to 'Logout', '/sessions/destroy' else link_to 'Login', '/sessions/new' end%> | <%=if logged_in? then link_to 'New Post', new_post_path end%></h2>
     <% @posts.each do |post| %>
         <p><strong><%= post.title %></strong></p>
         <p><i>by <%= User.find_by_id(post.user_id).name%> from <%=User.find_by_id(post.user_id).city%></i></p>
